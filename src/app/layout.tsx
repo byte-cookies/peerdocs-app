@@ -27,6 +27,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <header className="bg-gray-100 shadow-md py-4">
+          <article className="mx-auto flex items-center justify-between px-4">
+            {/* Logo */}
+            <h1 className="text-[2rem] font-bold text-gray-800 tracking-wide">
+              Peerdocs
+            </h1>
+          </article>
+        </header>
         {children}
       </body>
     </html>
