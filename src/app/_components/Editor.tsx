@@ -15,9 +15,15 @@ interface EditorProps {
 export default function Editor({ id, initialContent }: EditorProps) {
   const [blocks, setBlocks] = useState<Block[]>([]);
 
-  const editor = useCreateBlockNote(
-    initialContent != null ? BlockNoteEditor.create({ initialContent }) : {}
-  );
+  let editor: BlockNoteEditor;
+
+  if (initialContent) {
+    editor = useCreateBlockNote({
+      initialContent: initialContent,
+    });
+  } else {
+    editor = useCreateBlockNote();
+  }
 
   return (
     <main className="p-4">

@@ -1,10 +1,11 @@
 "use client";
-import { connect } from "./_lib/websocket";
 import PostList from "./_components/PostList";
+import { PostListParams, setConnectUrl, getPostList } from "./_lib/websocket";
 import { useState } from "react";
 
 export default function Home() {
   const [url, setUrl] = useState<string>("");
+  const [postList, setPostList] = useState<PostListParams[]>([]);
 
   return (
     <main className="p-4">
@@ -21,7 +22,7 @@ export default function Home() {
           />
           <button
             className="h-[2.5rem] px-4 text-sm font-medium rounded-lg bg-blue-500 text-white hover:bg-blue-600"
-            onClick={() => connect(url)}
+            onClick={() => setConnectUrl(url)}
           >
             서버 연결
           </button>
@@ -51,12 +52,12 @@ export default function Home() {
               </button>
               <button
                 className="h-[2.5rem] px-4 text-sm font-medium rounded-lg bg-purple-500 text-white hover:bg-purple-600"
-                onClick={() => connect(url)}
+                onClick={() => getPostList(setPostList)}
               >
                 게시글 가져오기
               </button>
             </div>
-            <PostList />
+            <PostList list={postList} />
           </article>
         </article>
       </section>
